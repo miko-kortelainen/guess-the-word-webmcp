@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react"
 import { useFoley } from "@foleyjs/react";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Board } from "./components/Board";
@@ -185,6 +186,7 @@ export function App() {
       <div className="sr-only" aria-live="polite">
         {announcement}
       </div>
+      <Analytics />
     </div>
   );
 }
