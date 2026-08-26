@@ -21,6 +21,7 @@ export function ModeSwitch({ mode, onChange }: Props) {
           return (
             <label
               key={option.value}
+              data-foley-click
               className={`flex cursor-pointer items-start gap-2 border px-3 py-2 ${
                 selected ? "border-brand" : "border-line"
               }`}

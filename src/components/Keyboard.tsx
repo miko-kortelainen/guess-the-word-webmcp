@@ -35,7 +35,14 @@ export function Keyboard({ guesses, onLetter, onEnter, onBackspace, disabled }: 
       {ROWS.map((row, index) => (
         <div key={row.join("")} className="flex justify-center gap-1">
           {index === 2 ? (
-            <button type="button" className="key px-2 text-xs" onClick={onEnter} disabled={disabled}>
+            <button
+              type="button"
+              className="key px-2 text-xs"
+              onClick={onEnter}
+              disabled={disabled}
+              data-foley-press="press"
+              data-foley-release="release"
+            >
               Enter
             </button>
           ) : null}
@@ -45,6 +52,7 @@ export function Keyboard({ guesses, onLetter, onEnter, onBackspace, disabled }: 
               type="button"
               className="key"
               data-status={status[letter]}
+              data-foley-press="thock"
               onClick={() => onLetter(letter)}
               disabled={disabled}
               aria-label={
@@ -62,6 +70,7 @@ export function Keyboard({ guesses, onLetter, onEnter, onBackspace, disabled }: 
               className="key px-2 text-xs"
               onClick={onBackspace}
               disabled={disabled}
+              data-foley-press="thock"
             >
               Delete
             </button>

@@ -46,6 +46,7 @@ export function HeaderMenu({ open, label, badge, align = "right", onToggle, onCl
         aria-controls={panelId}
         aria-haspopup="dialog"
         onClick={onToggle}
+        data-foley-click
         className="inline-flex min-w-[8rem] items-center justify-center gap-1.5 border border-line bg-transparent px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.12em]"
       >
         {label}
