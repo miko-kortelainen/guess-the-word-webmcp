@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: oklch(0.145 0.008 250);
+  color: oklch(0.93 0.012 100);
+}
+
+button,
+input,
+select,
+textarea {
+  border-radius: 0;
+}
+
+:focus-visible {
+  outline: 2px solid oklch(0.78 0.04 195);
+  outline-offset: 2px;
+}
+
+.tile {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border: 2px solid oklch(0.28 0.012 250);
+  border-radius: 0;
+  background: oklch(0.145 0.008 250);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tile-letter {
+  line-height: 1;
+}
+
+.tile[data-status="tbd"] {
+  border-color: oklch(0.93 0.012 100);
+}
+
+.tile[data-status="proposal"] {
+  border-color: oklch(0.78 0.04 195);
+  border-style: dashed;
+  color: oklch(0.78 0.04 195);
+  background: oklch(0.18 0.01 250);
+  opacity: 0.7;
+}
+
+.tile[data-status="correct"] {
+  background: oklch(0.38 0.06 185);
+  border-color: oklch(0.38 0.06 185);
+  color: oklch(0.97 0.01 100);
+}
+
+.tile[data-status="present"] {
+  background: oklch(0.4 0.09 50);
+  border-color: oklch(0.4 0.09 50);
+  color: oklch(0.97 0.01 100);
+}
+
+.tile[data-status="absent"] {
+  background: oklch(0.26 0.01 250);
+  border-color: oklch(0.26 0.01 250);
+  color: oklch(0.78 0.01 100);
+}
+
+.tile[data-by="agent"] {
+  outline: 1px dashed oklch(0.78 0.04 195);
+  outline-offset: 2px;
+}
+
+.key {
+  min-width: 2rem;
+  min-height: 2.75rem;
+  padding: 0 0.45rem;
+  border-radius: 0;
+  border: 1px solid oklch(0.28 0.012 250);
+  background: oklch(0.18 0.01 250);
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.key[data-status="correct"] {
+  background: oklch(0.38 0.06 185);
+  border-color: oklch(0.38 0.06 185);
+  color: oklch(0.97 0.01 100);
+}
+
+.key[data-status="present"] {
+  background: oklch(0.4 0.09 50);
+  border-color: oklch(0.4 0.09 50);
+  color: oklch(0.97 0.01 100);
+}
+
+.key[data-status="absent"] {
+  background: oklch(0.22 0.01 250);
+  border-color: oklch(0.22 0.01 250);
+  color: oklch(0.62 0.01 250);
+}
+
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: 30;
+  width: min(22rem, calc(100vw - 2rem));
+  max-height: min(70vh, 28rem);
+  overflow: auto;
+  border: 1px solid oklch(0.28 0.012 250);
+  background: oklch(0.145 0.008 250);
+  padding: 0.75rem;
+  overscroll-behavior: contain;
+}
+
+.menu-panel-left {
+  left: 0;
+}
+
+.menu-panel-right {
+  right: 0;
+}
+
+.proposal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border: 2px solid;
+  border-color: oklch(0.55 0.18 25);
+  background: transparent;
+  color: oklch(0.55 0.18 25);
+  cursor: pointer;
+}
+
+.proposal-btn-accept {
+  border-color: oklch(0.6 0.15 145);
+  color: oklch(0.6 0.15 145);
+}
+
+.proposal-btn:hover {
+  background: oklch(0.55 0.18 25 / 0.15);
+}
+
+.proposal-btn-accept:hover {
+  background: oklch(0.6 0.15 145 / 0.15);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tile.is-revealed {
+    animation: tile-reveal 700ms cubic-bezier(0.2, 0, 0, 1) both;
+  }
+
+  .key,
+  .tile {
+    transition-property: background-color, border-color, color, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: ease;
+  }
+}
+
+@keyframes tile-reveal {
+  from {
+    transform: rotateX(-90deg);
+    opacity: 0.4;
+  }
+  to {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@media (forced-colors: active) {
+  .tile[data-status="correct"] {
+    border-width: 4px;
+  }
+  .tile[data-status="present"] {
+    border-style: dashed;
+  }
+}
