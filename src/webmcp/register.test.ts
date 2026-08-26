@@ -4,7 +4,7 @@ import { GameEngine } from "../game/engine";
 import { MAX_TOOL_OUTPUT } from "../game/types";
 import { answers } from "../data/answers";
 import { activityLog } from "./activityLog";
-import { registerAgentleTools } from "./register";
+import { registerGuessTheWordTools } from "./register";
 import { buildTools } from "./tools";
 
 type StubTool = ReturnType<typeof buildTools>[number];
@@ -43,13 +43,13 @@ describe("WebMCP registration", () => {
   it("is a no-op when document.modelContext is absent", () => {
     clearRegistry();
     const engine = new GameEngine(loadWordLists());
-    expect(() => registerAgentleTools(engine)()).not.toThrow();
+    expect(() => registerGuessTheWordTools(engine)()).not.toThrow();
   });
 
   it("registers all five tools when the API is present", async () => {
     const engine = new GameEngine(loadWordLists());
     const { tools } = installRegistry();
-    registerAgentleTools(engine);
+    registerGuessTheWordTools(engine);
     await vi.waitFor(() => expect(tools.size).toBe(5));
     expect([...tools.keys()].sort()).toEqual(
       ["get_game_state", "new_game", "propose_guess", "submit_guess", "suggest_guesses"].sort(),
@@ -62,14 +62,14 @@ describe("WebMCP registration", () => {
       throw new DOMException("denied", "NotAllowedError");
     });
     const engine = new GameEngine(loadWordLists());
-    expect(() => registerAgentleTools(engine)).not.toThrow();
+    expect(() => registerGuessTheWordTools(engine)).not.toThrow();
     await vi.waitFor(() => expect(warn).toHaveBeenCalled());
   });
 
   it("unregisters when the abort controller is aborted", async () => {
     const engine = new GameEngine(loadWordLists());
     const { tools } = installRegistry();
-    const unregister = registerAgentleTools(engine);
+    const unregister = registerGuessTheWordTools(engine);
     await vi.waitFor(() => expect(tools.size).toBe(5));
     unregister();
     expect(tools.size).toBe(0);

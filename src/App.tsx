@@ -8,9 +8,9 @@ import { cancelGameSounds, playGuessReveal } from "./foley/sounds";
 import { engine } from "./game/engineInstance";
 import { WORD_LENGTH } from "./game/types";
 import { activityLog } from "./webmcp/activityLog";
-import { registerAgentleTools } from "./webmcp/register";
+import { registerGuessTheWordTools } from "./webmcp/register";
 
-const MUTE_KEY = "agentle-muted";
+const MUTE_KEY = "guess-the-word-webmcp-muted";
 
 export function App() {
   const state = useSyncExternalStore(engine.subscribe, engine.getSnapshot, engine.getSnapshot);
@@ -29,7 +29,7 @@ export function App() {
   const revealedCount = useRef(0);
   const lastProposalAt = useRef<number | null | undefined>(undefined);
 
-  useEffect(() => registerAgentleTools(engine), []);
+  useEffect(() => registerGuessTheWordTools(engine), []);
 
   useEffect(() => {
     setDraft("");

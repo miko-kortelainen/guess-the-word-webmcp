@@ -1,4 +1,4 @@
-# agentle
+# guess-the-word-webmcp
 
 A five-letter word guessing game with two interfaces to **one** game state: a visual board for humans, and [WebMCP](https://github.com/webmachinelearning/webmcp) tools for an agent in the browser.
 
@@ -6,7 +6,7 @@ The agent can inspect the board, rank candidates, propose a guess for you to app
 
 ## Live demo
 
-Deploy the `dist` folder to any HTTPS static host (Vercel is the default). After deploy, confirm origin isolation:
+Deploy with Vercel (GitHub integration or `npx vercel`). `vercel.json` already sends `Origin-Agent-Cluster: ?1`, which WebMCP needs. Confirm after deploy:
 
 ```bash
 curl -sI https://YOUR-DOMAIN | grep -i origin-agent-cluster

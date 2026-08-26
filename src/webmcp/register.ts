@@ -1,7 +1,7 @@
 import type { GameEngine } from "../game/engine";
 import { buildTools } from "./tools";
 
-export function registerAgentleTools(engine: GameEngine): () => void {
+export function registerGuessTheWordTools(engine: GameEngine): () => void {
   if (typeof document === "undefined" || !document.modelContext) {
     return () => {};
   }
@@ -13,7 +13,7 @@ export function registerAgentleTools(engine: GameEngine): () => void {
       try {
         await document.modelContext!.registerTool(tool, { signal: controller.signal });
       } catch (err) {
-        console.warn(`[agentle] could not register ${tool.name}`, err);
+        console.warn(`[guess-the-word-webmcp] could not register ${tool.name}`, err);
       }
     }
   })();
