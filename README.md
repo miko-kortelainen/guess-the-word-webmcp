@@ -124,7 +124,7 @@ await document.modelContext.registerTool({
 });
 ```
 
-See `src/webmcp/register.ts` for the production loop: every `registerTool` is awaited, rejections are caught, and an `AbortController` unregisters on React StrictMode cleanup.
+See `src/webmcp/register.ts` for the production calls: every `registerTool` is awaited, rejections are caught, and an `AbortController` unregisters on React StrictMode cleanup.
 
 ## Local setup
 
